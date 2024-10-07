@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Countdown Timer</title>
+    <style>
+        body{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color: aquamarine;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+        .countdown-conatiner{
+            height: 100vh;
+            margin: auto;
+            font-weight: bold;
+            font-size: 36px;
+        }
+        .countdown-timer{
+            font-weight: bold;
+            font-size: medium;
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown-container">
+        <div class="Countdown-timer" id="Timer">
+
+        </div>
+        <div class="Countdown-label">Until 2025</div>
+    </div>
+</body>
+
+<script>
+    const targetdate= new Date('2025-01-01T00:00:00');
+
+    function updatecountdown(){
+        const currentdate= new Date();
+
+        const timedifference = targetdate-currentdate;
+
+        const days= Math.floor(timedifference/(1000*60*60*24));
+        const hours= Math.floor((timedifference%(1000*60*60*24))/(1000*60*60));
+        const minutes= Math.floor((timedifference%(1000*60*60))/(1000*60));
+        const sec= Math.floor((timedifference%(1000*60))/1000);
+
+        document.getElementById('Timer').innerHTML= `${days}d ${hours}h ${minutes}m ${sec}s`;
+
+        setTimeout(updatecountdown, 1000);
+
+    }
+      updatecountdown()
+</script>
+</html>
